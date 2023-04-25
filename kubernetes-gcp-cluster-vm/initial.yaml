@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: create the 'ansib' user
+      user: name=ansib append=yes state=present createhome=yes shell=/bin/bash
+
+    - name: allow 'ansib' to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'ansib ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: set up authorized keys for the ansib user
+      authorized_key: user=ansib key="{{item}}"
+      with_file:
+        - ~/.ssh/id_rsa.pub

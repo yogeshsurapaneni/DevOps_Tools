@@ -1,9 +1,9 @@
 [masters]
-master ansible_host=master ansible_user=root
+master ansible_host=master ansible_user=ansib
 
 [workers]
-worker-1 ansible_host=worker-1 ansible_user=root
-worker-2 ansible_host=worker-2 ansible_user=root
+worker-1 ansible_host=worker-1 ansible_user=ansib
+worker-2 ansible_host=worker-2 ansible_user=ansib
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
